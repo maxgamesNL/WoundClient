@@ -1,0 +1,11 @@
+build
+run
+.gradle
+*.iml
+*.ipr
+*.iws
+*.log
+*.tmp
+*.zip
+*.zip.iml
+*.bin
