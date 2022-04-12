@@ -5,13 +5,15 @@ import io.github.maxgamesNL.woundClient.modules.ModuleRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
+
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+
 import org.lwjgl.opengl.Display;
 
 public class Coords extends Module {
 
-    Minecraft mc = Minecraft.getMinecraft();
+    Minecraft mc;
     int width;
 
 
@@ -37,9 +39,10 @@ public class Coords extends Module {
 
     @Override
     public void renderHud(RenderGameOverlayEvent.Post e) {
+        mc = Minecraft.getMinecraft();
 
         width = Display.getWidth();
-        GlStateManager.scale(1.2, 1.2, 1.2);
+        //GlStateManager.scale(1.2, 1.2, 1.2);
 
         if(mc.fontRendererObj.getStringWidth("X: " + Math.round(mc.thePlayer.posX)) >= mc.fontRendererObj.getStringWidth("Y: " + Math.round(mc.thePlayer.posY)) && mc.fontRendererObj.getStringWidth("X: " + Math.round(mc.thePlayer.posX)) >= mc.fontRendererObj.getStringWidth("Z: " + Math.round(mc.thePlayer.posZ))) {
             Gui.drawRect(Math.round((float)Display.getWidth()/2.4f - mc.fontRendererObj.getStringWidth("X: " + Math.round(mc.thePlayer.posX)))-5, 2, Math.round((float)Display.getWidth()/2.4f), 35, 0x80000000);
@@ -54,7 +57,7 @@ public class Coords extends Module {
 
 
 
-        GlStateManager.scale(1/1.2, 1/1.2, 1/1.2);
+        //GlStateManager.scale(1/1.2, 1/1.2, 1/1.2);
     }
 
     @Override

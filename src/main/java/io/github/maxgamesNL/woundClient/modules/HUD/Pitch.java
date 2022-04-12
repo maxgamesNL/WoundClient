@@ -1,30 +1,23 @@
 package io.github.maxgamesNL.woundClient.modules.HUD;
 
-import io.github.maxgamesNL.woundClient.modules.Category;
+
 import io.github.maxgamesNL.woundClient.modules.Module;
 import io.github.maxgamesNL.woundClient.modules.ModuleRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import org.lwjgl.opengl.GL11;
 
-import static net.minecraft.client.gui.Gui.drawModalRectWithCustomSizedTexture;
-import static net.minecraft.client.gui.Gui.drawRect;
-import static org.lwjgl.opengl.GL11.*;
+import java.awt.*;
 
-public class FPS extends Module {
+public class Pitch extends Module {
 
     Minecraft mc;
-
-
-    public FPS() {
-        super("FPS", ModuleRegistry.getInstance().getCategoryByName("HUD"), "Shows the FPS");
+    int PitchX = 10;
+    int PitchY = 101;
+    public Pitch() {
+        super("Pitch", ModuleRegistry.getInstance().getCategoryByName("HUD"), "Shows the pitch");
     }
-
-    public int FPSCounterx = 10;
-    public int FPSCountery = 20;
 
     @Override
     protected void enable() {
@@ -39,14 +32,17 @@ public class FPS extends Module {
     @Override
     public void tick() {
         mc = Minecraft.getMinecraft();
+        if (mc.thePlayer.rotationPitch >= 360 || mc.thePlayer.rotationPitch <= -360) {
+            mc.thePlayer.rotationPitch = 1;
+        }
 
     }
 
     @Override
     public void renderHud(RenderGameOverlayEvent.Post e) {
-        Gui.drawRect(FPSCounterx, FPSCountery, FPSCounterx + 50, FPSCountery + 19, 0x80000000);
-        mc.fontRendererObj.drawStringWithShadow("FPS: " + mc.debug.split(" ")[0], FPSCounterx + 4, FPSCountery + 6, 0xFFFFFFFF);
-
+        mc = Minecraft.getMinecraft();
+        Gui.drawRect(PitchX, PitchY, PitchX + 70, PitchY + 20, 0x80000000);
+        mc.fontRendererObj.drawStringWithShadow("Pitch: " + (int)mc.thePlayer.rotationPitch, PitchX + 4, PitchY + 6, new Color(255, 255, 255, 255).getRGB());
     }
 
     @Override

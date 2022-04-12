@@ -14,7 +14,7 @@ public class CPS extends Module {
         super("CPS", ModuleRegistry.getInstance().getCategoryByName("HUD"), "Shows your current CPS");
     }
 
-    Minecraft mc = Minecraft.getMinecraft();
+    Minecraft mc;
 
     public int CPSCounterX = 10;
     public int CPSCounterY = 50;
@@ -36,6 +36,7 @@ public class CPS extends Module {
 
     @Override
     public void tick() {
+        mc = Minecraft.getMinecraft();
         every20thTick++;
         if(every20thTick >= 20) {
             LastCPSCounterLeft = CPSCounterLeft;
@@ -49,8 +50,8 @@ public class CPS extends Module {
 
     @Override
     public void renderHud(RenderGameOverlayEvent.Post e) {
-        Gui.drawRect(CPSCounterX, CPSCounterY, CPSCounterX + 50, CPSCounterY + 19, 0x80000000);
-        mc.fontRendererObj.drawStringWithShadow("CPS: " + LastCPSCounterLeft + ", "+ LastCPSCounterRight, CPSCounterX + 4, CPSCounterY + 6, 0xFFFFFFFF);
+        Gui.drawRect(CPSCounterX, CPSCounterY, CPSCounterX + 54, CPSCounterY + 19, 0x80000000);
+        mc.fontRendererObj.drawStringWithShadow("CPS: " + LastCPSCounterLeft + " | "+ LastCPSCounterRight, CPSCounterX + 4, CPSCounterY + 6, 0xFFFFFFFF);
         //get click per second on left mouse button
 
 

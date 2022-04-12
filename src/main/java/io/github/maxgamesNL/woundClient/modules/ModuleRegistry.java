@@ -2,9 +2,7 @@ package io.github.maxgamesNL.woundClient.modules;
 
 
 import io.github.maxgamesNL.woundClient.modules.GUI.ClickGUI;
-import io.github.maxgamesNL.woundClient.modules.HUD.CPS;
-import io.github.maxgamesNL.woundClient.modules.HUD.Coords;
-import io.github.maxgamesNL.woundClient.modules.HUD.FPS;
+import io.github.maxgamesNL.woundClient.modules.HUD.*;
 import io.github.maxgamesNL.woundClient.modules.Trolling.Emo;
 import io.github.maxgamesNL.woundClient.modules.catagories.GUI;
 import io.github.maxgamesNL.woundClient.modules.catagories.HUD;
@@ -48,6 +46,8 @@ public class ModuleRegistry {
         register(new Coords());
         register(new FPS());
         register(new CPS());
+        register(new Yaw());
+        register(new Pitch());
 
         //Util
 
